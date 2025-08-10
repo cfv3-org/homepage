@@ -1,56 +1,71 @@
-# Cfv3 homepage (personal page)
+# Cfv3 Homepage (Personal Page)
 
-A single-page personal website: static HTML (Nginx), a "Download CV" button, and a brief introduction.  
+A single-page personal website built with **React + Vite + TailwindCSS** and served as static HTML via **Nginx**.  
+Includes a “Download CV” button, a portfolio/skills section, and personal introduction.  
 Built and deployed to Kubernetes via **werf**, with the container image published to **GHCR**.
 
-## Components
+## Tech Stack
 
-- **Nginx** as the web server (serving static content)
-- **Dockerfile** for container image build
-- **Helm chart** (Service, Ingress, ServiceAccount, etc.)
-- **werf** for build/publish/deployment automation
-- **GitHub Actions** for CI/CD
-- Dedicated **Ingress for public access through Cloudflare**
+- **React + Vite + TailwindCSS** — modern, fast, and minimal frontend build
+- **Multi-stage Docker build** — Node.js for build → Nginx for serving static files
+- **Nginx** — lightweight web server with SPA fallback
+- **Helm chart** — Deployment, Service, Ingress, ServiceAccount, etc.
+- **werf** — build, publish, and deployment automation
+- **GitHub Actions** — CI/CD pipeline
+- **Cloudflare** — optional public access with CDN and TLS
 
 ## Repository Structure
 
 ```
 .
-├─ .github/workflows/deploy.yaml      # CI/CD (werf build + converge)
-├─ .helm/                             # Helm chart (Chart.yaml, templates/, values.yaml)
-│  ├─ templates/
-│  │  ├─ deployment.yaml
-│  │  ├─ service.yaml
-│  │  ├─ serviceaccount.yaml
-│  │  ├─ ingress.internal.yaml        # Internal network access
-│  │  └─ ingress.cloudflare.yaml      # Public access via Cloudflare
-│  └─ values.yaml
-├─ src/                               # Static website
+├─ .deployment/
+│  ├─ Dockerfile           # Multi-stage build (Node → Nginx)
+│  └─ nginx.conf           # SPA-friendly Nginx config
+├─ .github/workflows/      # CI/CD (werf build + converge)
+├─ .helm/                  # Helm chart (Chart.yaml, templates/, values.yaml)
+├─ src/                    # App source code (Vite project)
+│  ├─ assets/
+│  │  ├─ files/cv.pdf
+│  │  └─ images/photo.jpeg
 │  ├─ index.html
-│  └─ files/
-│     └─ cv.pdf                       # Latest résumé
-├─ images/                            # Images/icons
-├─ Dockerfile
-├─ werf.yaml
+│  ├─ package.json
+│  ├─ tailwind.config.js
+│  ├─ vite.config.ts
+│  └─ ...
+├─ werf.yaml               # werf config (build & deploy)
 └─ README.md
 ```
 
 ## Requirements
 
 - Docker
+- Node.js 20+ (for local build)
 - kubectl with access to the Kubernetes cluster
 - Helm
-- werf (see https://werf.io/)
+- werf (https://werf.io/)
 - Write access to GHCR (`ghcr.io/<org>/<repo>`)
 - (Optional) Ingress controller in the cluster
 
-## Manual Deployment via werf
-
-Authenticate with GHCR, publish the image, and deploy to the cluster:
+## Local Development
 
 ```bash
-export WERF_LOG_COLOR=on
-export WERF_LOG_PRETTY=on
+npm install
+npm run dev
+```
+
+Open http://localhost:5173
+
+## Local Build & Test via Docker
+
+```bash
+docker build -f .deployment/Dockerfile -t homepage:local ./src
+docker run --rm -p 8080:80 homepage:local
+```
+Then open http://localhost:8080
+
+## Deployment via werf
+
+```bash
 export WERF_REPO=ghcr.io/cfv3-org/homepage
 export NAMESPACE=homepage-production
 
@@ -67,17 +82,13 @@ werf dismiss --env production
 
 ## CI/CD (GitHub Actions)
 
-Pushing to `main` triggers image build and deployment to the cluster on a self-hosted runner:
+Push to `main` → build with `werf` → deploy to Kubernetes.
 
 ```yaml
 name: Build container and deploy
 on:
   push:
     branches: [ main ]
-
-concurrency:
-  group: homepage-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -86,8 +97,6 @@ jobs:
       contents: read
       packages: write
     env:
-      WERF_LOG_COLOR: on
-      WERF_LOG_PRETTY: on
       WERF_REPO: ghcr.io/cfv3-org/homepage
       IMAGE_TAG: ${{ github.sha }}
       NAMESPACE: homepage-production
@@ -96,36 +105,35 @@ jobs:
       - name: Login to GHCR
         run: |
           werf cr login ghcr.io --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
-      - name: Build & publish image (werf)
-        run: |
-          werf build
+      - name: Build & publish image
+        run: werf build
       - name: Deploy
-        run: |
-          werf converge --env production
+        run: werf converge --env production
 ```
 
-> ⚠️ The runner must have Kubernetes cluster access (`kubeconfig`) and werf installed.
+> ⚠️ Runner must have Kubernetes cluster access (`kubeconfig`) and werf installed.
 
-## Domain and Ingress Configuration
+## Domain & Ingress
 
-The hostname and related parameters are set in `.helm/values.yaml`.  
-Two Ingress manifests are available:
-- `ingress.internal.yaml` — for internal network access
-- `ingress.cloudflare.yaml` — for public access via Cloudflare (recommended, if no external IP in a server)
+Configured in `.helm/values.yaml`:
+- `ingress.enabled`: `true`
+- `ingress.hosts[0].host`: `cv.example.com`
+- `ingress.tls`: TLS certificate config (optional)
 
-Key parameters:
-- `ingress.enabled`: `true/false`
-- `ingress.className`: Ingress controller class (e.g., `nginx`)
-- `ingress.hosts[0].host`: domain name (e.g., `cv.example.com`)
-- `ingress.tls`: TLS configuration if a certificate is used
+Two ingress templates available:
+- `ingress.internal.yaml` — internal access
+- `ingress.cloudflare.yaml` — public access via Cloudflare
 
 ## Updating the CV
 
-Replace `src/files/cv.pdf` with the updated résumé, then commit → push to `main` → GitHub Actions will rebuild and redeploy.
+Replace `src/assets/files/cv.pdf` → commit → push to `main` → auto-deploy.
 
 ## Roadmap
 
 1. ✅ Static page
 2. ✅ Containerization
-3. ✅ Deployment via `werf`
-4. ⏳ Redesign  
+3. ✅ Deployment via werf
+4. ✅ Redesign  
+5. ⏳ Update bullets on page
+6. ⏳ Upload updated CV
+7. ⏳ Add images registry cleanup step

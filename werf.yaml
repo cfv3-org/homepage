@@ -3,4 +3,4 @@ project: homepage
 ---
 image: homepage
 dockerfile: Dockerfile
-context: ./src
+context: src/

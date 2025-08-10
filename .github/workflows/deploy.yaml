@@ -1,0 +1,34 @@
+name: Build container and deploy
+on:
+  push:
+    branches: [ main ]
+
+concurrency:
+  group: homepage-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: [ self-hosted ]
+    permissions:
+      contents: read
+      packages: write
+    env:
+      WERF_LOG_COLOR: on
+      WERF_LOG_PRETTY: on
+      WERF_REPO: ghcr.io/cfv3-org/homepage
+      IMAGE_TAG: ${{ github.sha }}
+      NAMESPACE: homepage-production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login to GHCR
+        run: |
+          werf cr login ghcr.io \
+            --username ${{ github.actor }} \
+            --password ${{ secrets.GITHUB_TOKEN }}
+      - name: Build & publish image (werf)
+        run: |
+          werf build
+      - name: Deploy
+        run: |
+          werf converge --env production

@@ -1,5 +1,7 @@
 # Cfv3 Homepage (Personal Page)
 
+[![Build container and deploy](https://github.com/cfv3-org/homepage/actions/workflows/deploy.yaml/badge.svg)](https://github.com/cfv3-org/homepage/actions/workflows/deploy.yaml)
+
 A single-page personal website built with **React + Vite + TailwindCSS** and served as static HTML via **Nginx**.  
 Includes a “Download CV” button, a portfolio/skills section, and personal introduction.  
 Built and deployed to Kubernetes via **werf**, with the container image published to **GHCR**.

@@ -26,6 +26,6 @@ Replace `src/files/cv.pdf` with the updated résumé, then commit → push to `m
 ## Roadmap
 
 1. ✅ Static page
-2. ⏳ Containerization
+2. ✅ Containerization
 3. ⏳ Deployment via werf
 4. ⏳ Redesign  

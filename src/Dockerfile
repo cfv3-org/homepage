@@ -7,7 +7,6 @@ RUN npm ci --omit=dev=false
 COPY tsconfig.json vite.config.ts postcss.config.js tailwind.config.js ./
 COPY index.html ./
 COPY src ./src
-COPY assets ./assets
 
 RUN npm run build
 

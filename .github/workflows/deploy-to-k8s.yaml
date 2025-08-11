@@ -6,31 +6,36 @@ concurrency:
   group: homepage-k8s-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  WERF_LOG_COLOR: on
+  WERF_LOG_PRETTY: on
+  WERF_REPO: ghcr.io/cfv3-org/homepage
+  IMAGE_TAG: ${{ github.sha }}
+  NAMESPACE: homepage-production
+
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: [ self-hosted ]
     permissions:
       contents: read
-      packages: [ write, delete ]
-    env:
-      WERF_LOG_COLOR: on
-      WERF_LOG_PRETTY: on
-      WERF_REPO: ghcr.io/cfv3-org/homepage
-      IMAGE_TAG: ${{ github.sha }}
-      NAMESPACE: homepage-production
+      packages: write
     steps:
       - uses: actions/checkout@v4
       - name: Login to GHCR
-        run: |
-          werf cr login ghcr.io \
-            --username ${{ github.actor }} \
-            --password ${{ secrets.GITHUB_TOKEN }}
+        run: werf cr login ghcr.io --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
       - name: Build & publish image (werf)
-        run: |
-          werf build
+        run: werf build
       - name: Deploy
-        run: |
-          werf converge --env production
+        run: werf converge --env production
+
+  cleanup:
+    runs-on: [ self-hosted ]
+    needs: [ build-and-deploy ]
+    steps:
+      - name: Login to GHCR with PAT
+        run: werf cr login ghcr.io --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
       - name: Cleanup
         run: |
-          werf cleanup
+          werf cleanup \
+            --repo "$WERF_REPO" \
+            --repo-github-token "${{ secrets.GHCR_CLEANUP_PAT }}"

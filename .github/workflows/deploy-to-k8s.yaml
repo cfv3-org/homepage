@@ -31,6 +31,6 @@ jobs:
       - name: Deploy
         run: |
           werf converge --env production
-#      - name: Cleanup
-#        run: |
-#          werf cleanup
+      - name: Cleanup
+        run: |
+          werf cleanup

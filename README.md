@@ -19,14 +19,11 @@ Built and deployed to Kubernetes via **werf**, with the container image publishe
 ## Repository Structure
 
 ```
-.
-├─ .deployment/
-│  ├─ Dockerfile           # Multi-stage build (Node → Nginx)
-│  └─ nginx.conf           # SPA-friendly Nginx config
+
 ├─ .github/workflows/      # CI/CD (werf build + converge)
 ├─ .helm/                  # Helm chart (Chart.yaml, templates/, values.yaml)
 ├─ app/src/
-│  ├─ assets/
+│  ├─ public/assets/
 │  │  └─ images/photo.jpeg
 │  ├─ src/                 # App source code (Vite project)
 │  ├─ index.html
@@ -132,11 +129,13 @@ Replace `app/assets/files/cv.pdf` → commit → push to `main` → auto-deploy.
 
 ## Roadmap
 
-1. ✅ Static page
-2. ✅ Containerization
-3. ✅ Deployment via werf
-4. ✅ Redesign  
-5. ✅ Upload to cloudflare pages  
-6. ✅ Update bullets on page
-7. ✅ Upload updated CV
-8. ⏳ Add images registry cleanup step
+1.  ✅ Static page
+2.  ✅ Containerization
+3.  ✅ Deployment via werf
+4.  ✅ Redesign  
+5.  ✅ Upload to cloudflare pages  
+6.  ✅ Update bullets on page
+7.  ✅ Upload updated CV
+8.  ✅ Add images registry cleanup step
+9.  ⏳ Avoid using of deprecated icons
+10. ⏳ Actualize all dependencies

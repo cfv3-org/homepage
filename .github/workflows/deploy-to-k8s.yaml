@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Login to GHCR
         run: werf cr login ghcr.io --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
-      - name: Build & publish image (werf)
+      - name: Build & publish image
         run: werf build
       - name: Deploy
         run: werf converge --env production
@@ -35,7 +35,4 @@ jobs:
       - name: Login to GHCR with PAT
         run: werf cr login ghcr.io --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
       - name: Cleanup
-        run: |
-          werf cleanup \
-            --repo "$WERF_REPO" \
-            --repo-github-token "${{ secrets.GHCR_CLEANUP_PAT }}"
+        run: werf cleanup --repo "$WERF_REPO" --repo-github-token "${{ secrets.GHCR_CLEANUP_PAT }}"

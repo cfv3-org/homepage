@@ -137,6 +137,6 @@ Replace `src/assets/files/cv.pdf` → commit → push to `main` → auto-deploy.
 3. ✅ Deployment via werf
 4. ✅ Redesign  
 5. ✅ Upload to cloudflare pages  
-6. ⏳ Update bullets on page
+6. ✅ Update bullets on page
 7. ⏳ Upload updated CV
 8. ⏳ Add images registry cleanup step

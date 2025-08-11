@@ -19,7 +19,7 @@ service:
 
 ingress:
   cloudflare:
-    enabled: true
+    enabled: false
     className: "cloudflare-tunnel"
     annotations:
       cert-manager.io/cluster-issuer: "letsencrypt-cloudflare"
@@ -34,7 +34,7 @@ ingress:
           - cfv3.org
 
   internal:
-    enabled: true
+    enabled: false
     className: "nginx"
     annotations:
       cert-manager.io/cluster-issuer: "letsencrypt-cloudflare"

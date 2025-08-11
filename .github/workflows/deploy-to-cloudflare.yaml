@@ -2,7 +2,7 @@ name: Build and Deploy to Cloudflare Pages
 
 on:
   push:
-    branches: [ "cloudflare_deploy_page" ]
+    branches: [ "main" ]
 
 concurrency:
   group: homepage-${{ github.ref }}
@@ -11,12 +11,9 @@ concurrency:
 permissions:
   contents: read
 
-env:
-  BUILD_DIR: dist
-
 jobs:
   build:
-    name: Build artifact (src/)
+    name: Build artifact
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -42,8 +39,8 @@ jobs:
 
       - name: Add _redirects (SPA fallback)
         run: |
-          if [ ! -f "${BUILD_DIR}/_redirects" ]; then
-            echo "/* /index.html 200" > "${BUILD_DIR}/_redirects"
+          if [ ! -f "dist/_redirects" ]; then
+            echo "/* /index.html 200" > "dist/_redirects"
           fi
 
       - name: Upload artifact

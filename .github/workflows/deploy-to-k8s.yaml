@@ -1,4 +1,4 @@
-name: Build container and deploy
+name: Build container and deploy to Vasary Lab K8S
 on:
   workflow_dispatch:
 
@@ -11,7 +11,7 @@ jobs:
     runs-on: [ self-hosted ]
     permissions:
       contents: read
-      packages: write
+      packages: [ write, delete ]
     env:
       WERF_LOG_COLOR: on
       WERF_LOG_PRETTY: on

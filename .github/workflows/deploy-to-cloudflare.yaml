@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: src
+        working-directory: app
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: "22"
           cache: "npm"
-          cache-dependency-path: "src/package-lock.json"
+          cache-dependency-path: "app/package-lock.json"
 
       - name: Install deps
         run: npm ci
@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: artifact
-          path: src/dist
+          path: app/dist
           if-no-files-found: error
           retention-days: 1
 

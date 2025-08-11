@@ -25,10 +25,10 @@ Built and deployed to Kubernetes via **werf**, with the container image publishe
 │  └─ nginx.conf           # SPA-friendly Nginx config
 ├─ .github/workflows/      # CI/CD (werf build + converge)
 ├─ .helm/                  # Helm chart (Chart.yaml, templates/, values.yaml)
-├─ src/                    # App source code (Vite project)
+├─ app/src/
 │  ├─ assets/
-│  │  ├─ files/cv.pdf
 │  │  └─ images/photo.jpeg
+│  ├─ src/                 # App source code (Vite project)
 │  ├─ index.html
 │  ├─ package.json
 │  ├─ tailwind.config.js
@@ -60,7 +60,7 @@ Open http://localhost:5173
 ## Local Build & Test via Docker
 
 ```bash
-docker build -f .deployment/Dockerfile -t homepage:local ./src
+werf build
 docker run --rm -p 8080:80 homepage:local
 ```
 Then open http://localhost:8080
@@ -128,7 +128,7 @@ Two ingress templates available:
 
 ## Updating the CV
 
-Replace `src/assets/files/cv.pdf` → commit → push to `main` → auto-deploy.
+Replace `app/assets/files/cv.pdf` → commit → push to `main` → auto-deploy.
 
 ## Roadmap
 
@@ -138,5 +138,5 @@ Replace `src/assets/files/cv.pdf` → commit → push to `main` → auto-deploy.
 4. ✅ Redesign  
 5. ✅ Upload to cloudflare pages  
 6. ✅ Update bullets on page
-7. ⏳ Upload updated CV
+7. ✅ Upload updated CV
 8. ⏳ Add images registry cleanup step

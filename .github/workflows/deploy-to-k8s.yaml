@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: homepage-${{ github.ref }}
+  group: homepage-k8s-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:

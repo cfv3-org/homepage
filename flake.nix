@@ -1,7 +1,7 @@
 {
   description = "Node development environment";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
   outputs = { self, nixpkgs }:
   let
@@ -9,7 +9,7 @@
       devShells = {
         default = pkgs.mkShell {
           buildInputs = [
-            pkgs.nodejs_20
+            pkgs.nodejs_22
             pkgs.yarn
             pkgs.nodePackages.typescript
           ];

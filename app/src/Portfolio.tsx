@@ -12,7 +12,7 @@ import {
     GraduationCap
 } from "lucide-react";
 import {motion} from "framer-motion";
-import {education, experience, profile, skills} from "./data/context";
+import {education, experience, highlights, profile, skills} from "./data/context";
 import { useNavigate } from "react-router-dom";
 
 const Section = ({id, title, children}: { id: string; title: string; children: React.ReactNode }) => (
@@ -129,18 +129,12 @@ export default function Portfolio() {
                             reviews, TDD, and automated checks to deliver reliable, maintainable solutions that scale.
                         </p>
                         <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm text-zinc-600 dark:text-zinc-400">
-                            <li className="flex items-start gap-2">
-                                <Terminal className="mt-0.5 h-4 w-4"/>DDD, Event-Driven, reliable integrations
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <Terminal className="mt-0.5 h-4 w-4"/>Observability: Prometheus, Grafana, Jaeger
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <Terminal className="mt-0.5 h-4 w-4"/>Kubernetes, Helm, Argo CD, GitOps
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <Terminal className="mt-0.5 h-4 w-4"/>PostgreSQL, Redis, Queues (RabbitMQ/Kafka)
-                            </li>
+                            {highlights.map((h, i) => (
+                                <li key={i} className="flex items-start gap-2">
+                                    <Terminal className="mt-0.5 h-4 w-4" />
+                                    {h}
+                                </li>
+                            ))}
                         </ul>
                         <h4 className="mt-8 font-semibold text-zinc-800 dark:text-zinc-200">Languages</h4>
                         <ul className="mt-3 grid sm:grid-cols-2 gap-3 text-sm text-zinc-600 dark:text-zinc-400">

@@ -33,6 +33,18 @@ export const profile = {
     ]
 };
 
+export const highlights: string[] = [
+    "DDD, Event-Driven, reliable integrations",
+    "Observability: Prometheus, Grafana, Jaeger",
+    "Kubernetes, Helm, Argo CD, GitOps",
+    "PostgreSQL, Redis, Queues (RabbitMQ/Kafka)",
+    "RAG, LLM integration, knowledge systems",
+    "Cloud: AWS, GCP, scalable architectures",
+    "CI/CD, automation, developer productivity",
+    "High-load systems, distributed architecture",
+    "Security, compliance, data protection"
+];
+
 export const skills: string[] = [
     "PHP", "GoLang", "Kotlin", "Node.js", "TypeScript", "DDD", "Event Sourcing", "Event-Driven", "Symfony", "Laravel", "PostgreSQL", "MCP", "n8n", "Ollama API", "RAG",
     "Redis", "Memcached", "RabbitMQ", "Kafka", "gRPC", "REST", "GraphQL", "Kubernetes", "Docker", "Helm", "Argo CD", "MetalLB",

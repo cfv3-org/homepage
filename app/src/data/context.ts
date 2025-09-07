@@ -34,9 +34,9 @@ export const profile = {
 };
 
 export const skills: string[] = [
-    "PHP", "GoLang", "Kotlin", "Node.js", "TypeScript", "DDD", "Event Sourcing", "Event-Driven", "Symfony", "Laravel", "PostgreSQL",
+    "PHP", "GoLang", "Kotlin", "Node.js", "TypeScript", "DDD", "Event Sourcing", "Event-Driven", "Symfony", "Laravel", "PostgreSQL", "MCP", "n8n", "Ollama API", "RAG",
     "Redis", "Memcached", "RabbitMQ", "Kafka", "gRPC", "REST", "GraphQL", "Kubernetes", "Docker", "Helm", "Argo CD", "MetalLB",
-    "ExternalDNS", "Vault", "Prometheus", "Grafana", "Jaeger", "ELK", "AWS", "GCP", "CI/CD", "NAS"
+    "ExternalDNS", "Vault", "Prometheus", "Grafana", "Jaeger", "ELK", "AWS", "GCP", "CI/CD", "NAS", "Transactional outbox"
 ];
 
 export const experience: ExperienceItem[] = [
@@ -46,6 +46,7 @@ export const experience: ExperienceItem[] = [
         period: "Oct 2024 — Present",
         location: "Germany · Hybrid",
         bullets: [
+            "Developed a Python-based RAG knowledge system that provides context-aware answers from project codebase and tickets, improving team efficiency",
             "Co-architected and delivered a core payment processing service from scratch using Kotlin, DDD, and event-driven architecture on Kafka",
             "Designed, implemented, and deployed a system that batches and executes all company payment transactions, ensuring accuracy and reliability in production",
             "Adapted quickly to Kotlin as a new primary language, applying best practices to produce maintainable, high-quality code",

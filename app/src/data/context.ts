@@ -42,13 +42,15 @@ export const highlights: string[] = [
     "Cloud: AWS, GCP, scalable architectures",
     "CI/CD, automation, developer productivity",
     "High-load systems, distributed architecture",
-    "Security, compliance, data protection"
+    "Security, compliance, data protection",
+    "Leadership, mentoring, staff-level engineering"
 ];
 
 export const skills: string[] = [
-    "PHP", "GoLang", "Kotlin", "Node.js", "TypeScript", "DDD", "Event Sourcing", "Event-Driven", "Symfony", "Laravel", "PostgreSQL", "MCP", "n8n", "Ollama API", "RAG",
+    "PHP", "Go", "Kotlin", "Node.js", "TypeScript", "DDD", "Event Sourcing", "Event-Driven", "Symfony", "Laravel", "PostgreSQL", "MCP", "n8n", "Ollama API", "RAG",
     "Redis", "Memcached", "RabbitMQ", "Kafka", "gRPC", "REST", "GraphQL", "Kubernetes", "Docker", "Helm", "Argo CD", "MetalLB",
-    "ExternalDNS", "Vault", "Prometheus", "Grafana", "Jaeger", "ELK", "AWS", "GCP", "CI/CD", "NAS", "Transactional outbox"
+    "ExternalDNS", "Vault", "Prometheus", "Grafana", "Jaeger", "ELK", "AWS", "GCP", "CI/CD", "NAS", "Transactional outbox",
+    "Software Architecture", "Hexagonal Architecture", "Team Leadership", "Mentoring", "Agile / Scrum", "Sprint Planning", "Technical Debt Management"
 ];
 
 export const experience: ExperienceItem[] = [
@@ -56,7 +58,7 @@ export const experience: ExperienceItem[] = [
         company: "Billie",
         title: "Software Developer",
         period: "Oct 2024 — Present",
-        location: "Germany · Hybrid",
+        location: "Berlin, Germany",
         bullets: [
             "Developed a Python-based RAG knowledge system that provides context-aware answers from project codebase and tickets, improving team efficiency",
             "Co-architected and delivered a core payment processing service from scratch using Kotlin, DDD, and event-driven architecture on Kafka",
@@ -64,11 +66,14 @@ export const experience: ExperienceItem[] = [
             "Adapted quickly to Kotlin as a new primary language, applying best practices to produce maintainable, high-quality code",
             "Served as the primary engineering contact for infrastructure-related issues, leveraging deep DevOps experience",
             "Participated in on-call rotations, resolving critical incidents in a highly distributed financial platform",
+            "Worked on legacy services in PHP, including gradual migration to Kotlin with a hexagonal architecture (ports & adapters pattern)",
+            "Contributed to system-wide technical decisions, reviewed pull requests, and drove initiatives to reduce technical debt",
+            "Collaborated with product owners on scope definition, task breakdown, and cross-team alignment to ensure timely delivery",
         ],
     },
     {
         company: "Turbine Kreuzberg",
-        title: "Senior Software Developer",
+        title: "Associate Lead Software Developer",
         period: "May 2022 — Sep 2024",
         location: "Berlin, Germany",
         bullets: [
@@ -77,11 +82,15 @@ export const experience: ExperienceItem[] = [
             "Acted as a key liaison with the infrastructure team, leveraging prior DevOps expertise to resolve complex deployment and scaling issues",
             "Adapted to a new work environment in the EU, successfully transitioning to English-language professional communication",
             "Maintained strong delivery performance despite rapid relocation and cultural transition, establishing a foundation for long-term career growth in the region",
+            "Participated in architectural decision-making, defined coding standards, and reviewed critical parts of the codebase",
+            "Took part in task estimation, sprint planning, and backlog prioritization in close collaboration with product management",
+            "Mentored new team members and helped establish best practices for cross-team collaboration and CI/CD processes",
+            "Acted as a bridge between product, development, and infrastructure teams to align priorities and reduce delivery risks",
         ],
     },
     {
         company: "PimPay",
-        title: "Solution Architect",
+        title: "Solution Architect / Staff Engineer / Team Lead",
         period: "Jul 2020 — Apr 2022",
         location: "Moscow, Russia",
         bullets: [
@@ -94,7 +103,7 @@ export const experience: ExperienceItem[] = [
     },
     {
         company: "PlatBox",
-        title: "Solution Architect",
+        title: "Solution Architect / Staff Engineer / Lead",
         period: "Apr 2019 — Jul 2020",
         location: "Moscow, Russia",
         bullets: [
@@ -104,6 +113,10 @@ export const experience: ExperienceItem[] = [
             "Acted as both architect and de-facto CTO, liaising with business stakeholders to align technical priorities with strategic goals",
             "Oversaw DevOps operations including data center work (BST, M9), network equipment configuration, and server provisioning",
             "Implemented Nutanix-based infrastructure improvements to increase resilience and simplify management",
+            "Defined system architecture evolution path and introduced practices for better code quality and long-term maintainability",
+            "Supervised sprint planning and task prioritization, balancing urgent delivery with strategic improvements",
+            "Provided guidance and feedback to engineers, helping them grow professionally and ensuring consistency across teams",
+            "Conducted regular 1:1 meetings, provided feedback and development plans for engineers to support their growth",
         ],
     },
     {
@@ -118,6 +131,7 @@ export const experience: ExperienceItem[] = [
             "Introduced Docker and implemented CI/CD pipelines on Argo, reducing deployment time and improving delivery reliability",
             "Architected and delivered a system that significantly increased conversion rates and generated revenue autonomously",
             "Balanced leadership responsibilities with hands-on coding, code reviews, and mentoring",
+            "Defined team processes, set coding standards, and helped developers progress through structured feedback",
         ],
     },
     {
@@ -133,6 +147,7 @@ export const experience: ExperienceItem[] = [
             "Increased loan application processing speed and reliability, enabling business expansion to new markets",
             "Established system foundations for future feature development, reducing time-to-market for new products",
             "Led the full delivery from initial concept to production launch, then successfully handed over to the internal team for long-term ownership",
+            "Introduced lightweight team processes and facilitated cross-functional communication during early growth stage",
         ],
     },
     {
@@ -165,7 +180,7 @@ export const experience: ExperienceItem[] = [
         company: "Molbulak Finance",
         title: "SQL Developer (Part-time)",
         period: "Feb 2013 — Dec 2013",
-        location: "Kyrgyzstan",
+        location: "Bishkek, Kyrgyzstan",
         bullets: [
             "Developed and maintained a credit debt calculation system for a large financial company operating in Kyrgyzstan, Russia, and Kazakhstan",
             "Implemented complex triggers in Firebird to recalculate annuity payments with floating interest rates",

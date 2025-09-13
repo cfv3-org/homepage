@@ -30,7 +30,11 @@ export const profile = {
     languages: [
         {icon: "🇺🇸", name: "English", level: "Work Proficiency"},
         {icon: "🇩🇪", name: "Deutsch", level: "A1"}
-    ]
+    ],
+    contact: {
+        message: "Open to full-time/contract offers. Prefer product teams, transparent processes, and solid engineering practices."
+    },
+    mindset: "I specialize in backend engineering, infrastructure, and enhancing developer experience. My focus is on designing transparent, well-instrumented systems where logging, metrics, tracing, and alerting are embedded from the start. I thrive in collaborative environments, establishing robust CI/CD pipelines, and applying proven quality practices such as code reviews, TDD, and automated checks to deliver reliable, maintainable solutions that scale."
 };
 
 export const highlights: string[] = [

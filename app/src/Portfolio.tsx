@@ -122,11 +122,7 @@ export default function Portfolio() {
                 <Card>
                     <div className="p-6 md:p-8">
                         <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
-                            I specialize in backend engineering, infrastructure, and enhancing developer experience.
-                            My focus is on designing transparent, well-instrumented systems where logging, metrics,
-                            tracing, and alerting are embedded from the start. I thrive in collaborative environments,
-                            establishing robust CI/CD pipelines, and applying proven quality practices such as code
-                            reviews, TDD, and automated checks to deliver reliable, maintainable solutions that scale.
+                            {profile.mindset}
                         </p>
                         <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm text-zinc-600 dark:text-zinc-400">
                             {highlights.map((h, i) => (
@@ -155,7 +151,7 @@ export default function Portfolio() {
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
                             {skills.map((s) => (
                                 <div key={s}
-                                     className="flex items-center justify-center px-3 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-800/60 ring-1 ring-black/5 dark:ring-white/10 text-sm">
+                                     className="flex text-center items-center justify-center px-3 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-800/60 ring-1 ring-black/5 dark:ring-white/10 text-sm">
                                     {s}
                                 </div>
                             ))}
@@ -212,8 +208,7 @@ export default function Portfolio() {
                         <div className="grow">
                             <h3 className="text-xl font-semibold">Let's work together</h3>
                             <p className="mt-1 text-zinc-600 dark:text-zinc-400">
-                                Open to full-time/contract offers. Prefer product teams, transparent processes, and
-                                solid engineering practices.
+                                {profile.contact.message}
                             </p>
                             <p className="mt-2 text-sm text-zinc-500 flex items-center gap-2">
                                 <Phone size={16}/>
